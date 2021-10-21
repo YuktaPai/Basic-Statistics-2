@@ -1,0 +1,19 @@
+# Look at the data given below. Plot the data, find the outliers and find out 𝜇,𝜎,𝜎2
+# code snippet to find the statistic measures
+import numpy as np
+import pandas as pd
+df = pd.read_excel('C:/Users/New folder/Assg2.xlsx')
+print('Mean is',df.mean())
+print('StdDev is',df.std())
+print('Variance is',df.var())
+
+# What is the good measure of the risk involved in a venture of this kind? Compute this measure
+# Variance or standard deviation can be interpreted as the risk involved, or the variability of the random variable an be associated with the risk it involves.
+# Variance or standard deviation of the random variable business venture outcome is
+
+import pandas as pd
+df = pd.read_excel('D:/Study/Book1.xlsx')
+for i in range(0,6):
+df[i,2]= df.x*df['P(x)']
+df[0,2].var()
+print('Standard Deviation or Risk involved is:',df[0,2].std())
