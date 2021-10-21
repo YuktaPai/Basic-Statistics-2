@@ -1,0 +1,15 @@
+# Auditors at a small community bank randomly sample 100 withdrawal transactions made during the week at an ATM machine located near the bank’s main branch. Over the past 2 years, the average withdrawal amount has been $50 with a standard deviation of $40. Since audit investigations are typically expensive, the auditors decide to not initiate further investigations if the mean transaction amount of the sample is between $45 and $55. What is the probability that in any given week, there will be an investigation?
+# A. 1.25%     B. 2.5%       C. 10.55%      D. 21.1%          E. 50%
+
+# Answer  C. 10.55
+# Probability that there will be no investigation is if 45<sample mean<55
+# Code snippet:
+import pandas as pd
+from scipy import stats
+x1 = 45
+x2 = 55
+mean = 50
+sig = 40
+Prob1 = stats.norm.cdf(x1,mean,sig)
+Prob2 = ( stats.norm.cdf(x2,mean,sig)-stats.norm.cdf(x1,mean,sig))
+print('The probability that there will be no investigation is ', Prob2*100)
