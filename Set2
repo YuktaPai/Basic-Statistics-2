@@ -1,0 +1,111 @@
+# The time required for servicing transmissions is normally distributed with  = 45 minutes and  = 8 minutes. The service manager plans to have work begin on the transmission of a customer’s car 10 minutes after the car is dropped off and the customer is told that the car will be ready within 1 hour from drop-off. What is the probability that the service manager cannot meet his commitment?
+# A. 0.3875 B. 0.2676 C. 0.5 D. 0.6987
+# Answer: B
+# Given, Mean = 45, StdDev. = 8
+# code snippet for probability
+x = 50
+mu = 45
+sig = 8
+from scipy import stats
+prob = 1 - stats.norm.cdf(x,mu,sig)
+print("Probability that manager won't meet his commitment, time>=60 ", 'is',round(prob,5))
+
+
+
+
+# The current age (in years) of 400 clerical employees at an insurance claims processing center is normally distributed with mean  = 38 and Standard deviation  =6. For each statement below, please specify True/False. If false, briefly explain why.
+# A. More employees at the processing center are older than 44 than between 38 and 44.
+# B. A training program for employees under the age of 30 at the center would be expected to attract about 36 employees.
+#  Given, N = 400, Mean = 38, StdDev = 6
+#  A. False
+
+#  code snippet for probability of employee age comparison
+x = 44
+mu = 38
+sig = 6
+from scipy import stats
+prob1 = 1 - stats.norm.cdf(x, mu,sig)
+prob2 = stats.norm.cdf(x,mu,sig) - 0.5
+if prob1>prob2:
+print('More employees are older than 44 than employees between 38 and 44')
+else:
+print("Employees older than 44 are less in mumber than those between 38 and 44")
+
+#  B. True
+#  code snippet to get number of employees below age 30
+mu = 38
+sig = 6
+from scipy import stats
+prob3 = stats.norm.cdf(30,mu, sig)
+print("Employees under the age of 30 are", round(prob3*400))
+
+
+
+
+
+# Let X ~ N(100, 202). Find two values, a and b, symmetric about the mean, such that the probability of the random variable taking a value between them is 0.99.
+# A. 90.5, 105.9     B. 80.2, 119.8     C. 22, 78        D. 48.5, 151.5       E. 90.1, 109.9
+
+# Answer D. 48.5, 151.5
+#code snippet for 99% value range. By ppf
+mu = 100
+sig =20
+from scipy import stats                     # z-scores for 99%values
+z_score = stats.norm.ppf(0.99)
+a = mu-z_score*sig
+b = mu+z_score*sig                          #Calculating a and b                         
+print('99% values taken by the random variable lie in the range',round(a,2),'-',round(b,2))
+
+
+
+
+# Consider a company that has two different divisions. The annual profits from the two divisions are independent and have distributions Profit1 ~ N(5, 32) and Profit2 ~ N(7, 42) respectively. Both the profits are in $ Million. Answer the following questions about the total profit of the company in Rupees. Assume that $1 = Rs. 45
+
+# A. Specify a Rupee range (centered on the mean) such that it contains 95% probability for the annual profit of the company.
+# Rs.-77.39 million – Rs. 1157.39 million
+#code snippet
+#the mean and stddev for both the distributions
+mu1 = 5
+sig1 = 3
+mu2 =7
+sig2 = 4
+from scipy import stats                        #z_score for 95%
+z = stats.norm.ppf(0.975)
+Profit_dept1 = [mu1-z*sig1,mu1+z*sig1]
+Profit_dept2 =[mu2-z*sig2,mu2+z*sig2]
+Annual_profit = [0,0]
+for x in range(0,2):
+Annual_profit[x] = round((Profit_dept1[x]+ Profit_dept2[x])*45,2)
+print('Annual profit range of the company in rupees millions is:', Annual_profit)
+
+
+# B. Specify the 5th percentile of profit (in Rupees) for the company
+# code snippet
+from scipy import stats
+z = stats.norm.ppf(0.975)
+z
+rng1 = [5-z*3,5+z*3]
+rng2 = [7-z*4,7+z*4]
+print('The 5th percentile is of div1',rng1 )
+print('The 5th percentile is of div1',rng2 )
+Percentile = [0,0]
+for x in range(0,2):
+Percentile[x] = round((rng1[x]+ rng2[x])*45,2)
+print('5th percentile Range is', Percentile)
+
+
+# C. Which of the two divisions has a larger probability of making a loss in a given year?
+# code snippet for loss probability of divisions
+prob = stats.norm.cdf(0,7,4)
+round(prob,2)
+output: 0.04
+prob = stats.norm.cdf(0,5,3)
+round(prob,2)
+
+
+
+
+
+
+
+
